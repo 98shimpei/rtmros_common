@@ -1903,6 +1903,16 @@
    "Stop Stabilizer Mode."
    (send self :autobalancerservice_stopstabilizer)
    )
+  (:start-box-balancer
+   (&optional (value 0.05))
+   "Start Box Balancer Mode."
+   (send self :autobalancerservice_startBoxBalancer :gain value)
+   )
+  (:stop-box-balancer
+   ()
+   "Stop Box Balancer Mode."
+   (send self :autobalancerservice_stopBoxBalancer)
+   )
   )
 
 ;; KalmanFilterService
