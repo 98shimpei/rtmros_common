@@ -1913,6 +1913,11 @@
    "Stop Box Balancer Mode."
    (send self :autobalancerservice_stopBoxBalancer)
    )
+  (:get-box-weight
+   ()
+   "Get Box Weight."
+   (send self :autobalancerservice_getBoxWeight)
+   )
   )
 
 ;; KalmanFilterService
