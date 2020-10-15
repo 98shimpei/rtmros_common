@@ -64,6 +64,7 @@ HrpsysSeqStateROSBridge::HrpsysSeqStateROSBridge(RTC::Manager* manager) :
   trajectory_command_sub = nh.subscribe("/fullbody_controller/command", 1, &HrpsysSeqStateROSBridge::onTrajectoryCommandCB, this);
   landing_height_sub = nh.subscribe("/landing_height", 1, &HrpsysSeqStateROSBridge::onLandingHeightCB, this);
   steppable_region_sub = nh.subscribe("/steppable_region", 1, &HrpsysSeqStateROSBridge::onSteppableRegionCB, this);
+  box_pose_sub = nh.subscribe("/box_pose", 1, &HrpsysSeqStateROSBridge::onBoxPoseCB, this);
   mot_states_pub = nh.advertise<hrpsys_ros_bridge::MotorStates>("/motor_states", 1);
   odom_pub = nh.advertise<nav_msgs::Odometry>("/odom", 1);
   imu_pub = nh.advertise<sensor_msgs::Imu>("/imu", 1);
@@ -306,6 +307,17 @@ void HrpsysSeqStateROSBridge::onSteppableRegionCB(const hrpsys_ros_bridge::Stepp
   }
   m_rssteppableRegion.data.l_r = msg->l_r;
   m_rssteppableRegionOut.write();
+}
+
+void HrpsysSeqStateROSBridge::onBoxPoseCB(const hrpsys_ros_bridge::QuatPose::ConstPtr& msg) {
+  m_rsboxPose.data.px = msg->px;
+  m_rsboxPose.data.py = msg->py;
+  m_rsboxPose.data.pz = msg->pz;
+  m_rsboxPose.data.rx = msg->rx;
+  m_rsboxPose.data.ry = msg->ry;
+  m_rsboxPose.data.rz = msg->rz;
+  m_rsboxPose.data.rw = msg->rw;
+  m_rsboxPoseOut.write();
 }
 
 bool HrpsysSeqStateROSBridge::setSensorTransformation(hrpsys_ros_bridge::SetSensorTransformation::Request& req,

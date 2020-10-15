@@ -178,6 +178,8 @@ class HrpsysSeqStateROSBridgeImpl  : public RTC::DataFlowComponentBase
   OutPort<OpenHRP::TimedLandingPosition> m_rslandingHeightOut;
   OpenHRP::TimedSteppableRegion m_rssteppableRegion;
   OutPort<OpenHRP::TimedSteppableRegion> m_rssteppableRegionOut;
+  OpenHRP::TimedQuatPose m_rsboxPose;
+  OutPort<OpenHRP::TimedQuatPose> m_rsboxPoseOut;
 
   // </rtc-template>
 
