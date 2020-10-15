@@ -309,14 +309,20 @@ void HrpsysSeqStateROSBridge::onSteppableRegionCB(const hrpsys_ros_bridge::Stepp
   m_rssteppableRegionOut.write();
 }
 
-void HrpsysSeqStateROSBridge::onBoxPoseCB(const hrpsys_ros_bridge::QuatPose::ConstPtr& msg) {
-  m_rsboxPose.data.px = msg->px;
-  m_rsboxPose.data.py = msg->py;
-  m_rsboxPose.data.pz = msg->pz;
-  m_rsboxPose.data.rx = msg->rx;
-  m_rsboxPose.data.ry = msg->ry;
-  m_rsboxPose.data.rz = msg->rz;
-  m_rsboxPose.data.rw = msg->rw;
+void HrpsysSeqStateROSBridge::onBoxPoseCB(const hrpsys_ros_bridge::BoxPoses::ConstPtr& msg) {
+  size_t box_num(msg->poses.size());
+  m_rsboxPose.data.poses.length(box_num);
+  for (size_t i = 0; i < box_num; i++) {
+    m_rsboxPose.data.poses[i].px = msg->poses[i].px;
+    m_rsboxPose.data.poses[i].py = msg->poses[i].py;
+    m_rsboxPose.data.poses[i].pz = msg->poses[i].pz;
+    m_rsboxPose.data.poses[i].rx = msg->poses[i].rx;
+    m_rsboxPose.data.poses[i].ry = msg->poses[i].ry;
+    m_rsboxPose.data.poses[i].rz = msg->poses[i].rz;
+    m_rsboxPose.data.poses[i].rw = msg->poses[i].rw;
+    m_rsboxPose.data.poses[i].id = msg->poses[i].id;
+  }
+  m_rsboxPose.data.existence = msg->existence;
   m_rsboxPoseOut.write();
 }
 

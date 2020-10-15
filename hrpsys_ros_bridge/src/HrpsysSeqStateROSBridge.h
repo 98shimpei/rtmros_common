@@ -31,7 +31,8 @@
 #include "hrpsys_ros_bridge/MotorStates.h"
 #include "hrpsys_ros_bridge/ContactStatesStamped.h"
 #include "hrpsys_ros_bridge/LandingPosition.h"
-#include "hrpsys_ros_bridge/QuatPose.h"
+#include "hrpsys_ros_bridge/BoxPose.h"
+#include "hrpsys_ros_bridge/BoxPoses.h"
 #include "hrpsys_ros_bridge/CogState.h"
 #include "hrpsys_ros_bridge/SteppableRegion.h"
 #include "diagnostic_msgs/DiagnosticArray.h"
@@ -60,7 +61,7 @@ class HrpsysSeqStateROSBridge  : public HrpsysSeqStateROSBridgeImpl
   void onTrajectoryCommandCB(const trajectory_msgs::JointTrajectoryConstPtr& msg);
   void onLandingHeightCB(const hrpsys_ros_bridge::LandingPosition::ConstPtr& msg);
   void onSteppableRegionCB(const hrpsys_ros_bridge::SteppableRegion::ConstPtr& msg);
-  void onBoxPoseCB(const hrpsys_ros_bridge::QuatPose::ConstPtr& msg);
+  void onBoxPoseCB(const hrpsys_ros_bridge::BoxPoses::ConstPtr& msg);
   bool sendMsg (dynamic_reconfigure::Reconfigure::Request &req,
                 dynamic_reconfigure::Reconfigure::Response &res);
   bool setSensorTransformation(hrpsys_ros_bridge::SetSensorTransformation::Request& req,
