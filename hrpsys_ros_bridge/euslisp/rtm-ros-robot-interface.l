@@ -1918,6 +1918,16 @@
    "Get Box Weight."
    (send self :autobalancerservice_getBoxWeight)
    )
+  (:start-look-at-box
+   (&optional (value 0.05))
+   "start look at box mode"
+   (send self :autobalancerservice_startLookAtBox :gain value)
+   )
+  (:stop-look-at-box
+   ()
+   "stop look at box mode"
+   (send self :autobalancerservice_stopLookAtBox)
+   )
   )
 
 ;; KalmanFilterService
