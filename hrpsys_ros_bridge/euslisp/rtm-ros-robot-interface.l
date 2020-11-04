@@ -1918,6 +1918,11 @@
    "Get Box Weight."
    (send self :autobalancerservice_getBoxWeight)
    )
+  (:set-box-weight-offset
+   ()
+   "Set Box Weight Offset."
+   (send self :autobalancerservice_setBoxWeightOffset)
+   )
   (:start-look-at-box
    (&optional (value 0.05))
    "start look at box mode"
