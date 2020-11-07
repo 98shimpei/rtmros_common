@@ -1924,7 +1924,7 @@
    (send self :autobalancerservice_setBoxWeightOffset)
    )
   (:start-look-at-box
-   (&optional (value 0.05))
+   (&optional (value 0.002))
    "start look at box mode"
    (send self :autobalancerservice_startLookAtBox :gain value)
    )
