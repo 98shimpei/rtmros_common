@@ -1904,9 +1904,9 @@
    (send self :autobalancerservice_stopstabilizer)
    )
   (:start-box-balancer
-   (&optional (value 0.05))
+   (&optional (vpos 0.15) (vrot 0.02))
    "Start Box Balancer Mode."
-   (send self :autobalancerservice_startBoxBalancer :gain value)
+   (send self :autobalancerservice_startBoxBalancer :gain_pos vpos :gain_rot vrot)
    )
   (:stop-box-balancer
    ()
