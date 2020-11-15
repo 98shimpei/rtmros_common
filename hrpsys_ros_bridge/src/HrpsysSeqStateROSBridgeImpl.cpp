@@ -53,6 +53,7 @@ HrpsysSeqStateROSBridgeImpl::HrpsysSeqStateROSBridgeImpl(RTC::Manager* manager)
     m_rslandingHeightOut("rslandingHeight", m_rslandingHeight),
     m_rssteppableRegionOut("rssteppableRegion", m_rssteppableRegion),
     m_rsboxPoseOut("rsboxPose", m_rsboxPose),
+    m_rslookAtPointOut("rslookAtPoint", m_rslookAtPoint),
     m_SequencePlayerServicePort("SequencePlayerService")
 
     // </rtc-template>
@@ -95,6 +96,7 @@ RTC::ReturnCode_t HrpsysSeqStateROSBridgeImpl::onInitialize()
   addOutPort("rslandingHeight", m_rslandingHeightOut);
   addOutPort("rssteppableRegion", m_rssteppableRegionOut);
   addOutPort("rsboxPose", m_rsboxPoseOut);
+  addOutPort("rslookAtPoint", m_rslookAtPointOut);
 
   // Set service provider to Ports
 

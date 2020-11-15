@@ -65,6 +65,7 @@ HrpsysSeqStateROSBridge::HrpsysSeqStateROSBridge(RTC::Manager* manager) :
   landing_height_sub = nh.subscribe("/landing_height", 1, &HrpsysSeqStateROSBridge::onLandingHeightCB, this);
   steppable_region_sub = nh.subscribe("/steppable_region", 1, &HrpsysSeqStateROSBridge::onSteppableRegionCB, this);
   box_pose_sub = nh.subscribe("/box_pose", 1, &HrpsysSeqStateROSBridge::onBoxPoseCB, this);
+  look_at_point_sub = nh.subscribe("/look_at_point", 1, &HrpsysSeqStateROSBridge::onLookAtPointCB, this);
   mot_states_pub = nh.advertise<hrpsys_ros_bridge::MotorStates>("/motor_states", 1);
   odom_pub = nh.advertise<nav_msgs::Odometry>("/odom", 1);
   imu_pub = nh.advertise<sensor_msgs::Imu>("/imu", 1);
@@ -324,6 +325,13 @@ void HrpsysSeqStateROSBridge::onBoxPoseCB(const hrpsys_ros_bridge::BoxPoses::Con
   }
   m_rsboxPose.data.existence = msg->existence;
   m_rsboxPoseOut.write();
+}
+
+void HrpsysSeqStateROSBridge::onLookAtPointCB(const geometry_msgs::PointStamped::ConstPtr& msg) {
+  m_rslookAtPoint.data.x = msg->point.x;
+  m_rslookAtPoint.data.y = msg->point.y;
+  m_rslookAtPoint.data.z = msg->point.z;
+  m_rslookAtPointOut.write();
 }
 
 bool HrpsysSeqStateROSBridge::setSensorTransformation(hrpsys_ros_bridge::SetSensorTransformation::Request& req,

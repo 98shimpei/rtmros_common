@@ -19,6 +19,7 @@
 #include "sensor_msgs/JointState.h"
 #include "nav_msgs/Odometry.h"
 #include "geometry_msgs/WrenchStamped.h"
+#include "geometry_msgs/PointStamped.h"
 #include "actionlib/server/simple_action_server.h"
 #include "control_msgs/FollowJointTrajectoryAction.h"
 #ifdef USE_PR2_CONTROLLERS_MSGS
@@ -62,6 +63,7 @@ class HrpsysSeqStateROSBridge  : public HrpsysSeqStateROSBridgeImpl
   void onLandingHeightCB(const hrpsys_ros_bridge::LandingPosition::ConstPtr& msg);
   void onSteppableRegionCB(const hrpsys_ros_bridge::SteppableRegion::ConstPtr& msg);
   void onBoxPoseCB(const hrpsys_ros_bridge::BoxPoses::ConstPtr& msg);
+  void onLookAtPointCB(const geometry_msgs::PointStamped::ConstPtr& msg);
   bool sendMsg (dynamic_reconfigure::Reconfigure::Request &req,
                 dynamic_reconfigure::Reconfigure::Response &res);
   bool setSensorTransformation(hrpsys_ros_bridge::SetSensorTransformation::Request& req,
@@ -69,7 +71,7 @@ class HrpsysSeqStateROSBridge  : public HrpsysSeqStateROSBridgeImpl
  private:
   ros::NodeHandle nh;
   ros::Publisher joint_state_pub, joint_controller_state_pub, mot_states_pub, diagnostics_pub, clock_pub, zmp_pub, ref_cp_pub, act_cp_pub, odom_pub, imu_pub, em_mode_pub, ref_contact_states_pub, act_contact_states_pub, landing_target_pub, end_cog_state_pub, is_stuck_pub, use_flywheel_pub, estimated_fxy_pub;
-  ros::Subscriber trajectory_command_sub, landing_height_sub, steppable_region_sub, box_pose_sub;
+  ros::Subscriber trajectory_command_sub, landing_height_sub, steppable_region_sub, box_pose_sub, look_at_point_sub;
   std::vector<ros::Publisher> fsensor_pub, cop_pub;
 #ifdef USE_PR2_CONTROLLERS_MSGS
   actionlib::SimpleActionServer<pr2_controllers_msgs::JointTrajectoryAction> joint_trajectory_server;

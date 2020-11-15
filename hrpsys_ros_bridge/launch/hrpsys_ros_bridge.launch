@@ -174,6 +174,7 @@
     <rtconnect from="HrpsysSeqStateROSBridge0.rtc:rslandingHeight" to="abc.rtc:landingHeight"  subscription_type="new"/>
     <rtconnect from="HrpsysSeqStateROSBridge0.rtc:rssteppableRegion" to="abc.rtc:steppableRegion"  subscription_type="new"/>
     <rtconnect from="HrpsysSeqStateROSBridge0.rtc:rsboxPose" to="abc.rtc:boxPose"  subscription_type="new"/>
+    <rtconnect from="HrpsysSeqStateROSBridge0.rtc:rslookAtPoint" to="abc.rtc:lookAtPoint"  subscription_type="new"/>
     <rtactivate component="AutoBalancerServiceROSBridge.rtc" />
     <rtactivate component="StabilizerServiceROSBridge.rtc" />
     <rtactivate component="KalmanFilterServiceROSBridge.rtc" />
