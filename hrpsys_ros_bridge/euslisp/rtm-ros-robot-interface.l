@@ -1909,7 +1909,7 @@
    (send self :autobalancerservice_setBoxBalancer :t_id tid :b_id bid)
    )
   (:start-box-balancer
-    (&optional (set? t) (tid 7) (bid 8) (vpos 2.5) (vrot 0.003))
+    (&optional (set? t) (tid 7) (bid 8) (vpos 2.5) (vrot 0.0001))
     "Start Box Balancer Mode."
     (if set? (send self :autobalancerservice_setBoxBalancer :t_id tid :b_id bid))
     (send self :autobalancerservice_startBoxBalancer :gain_pos vpos :gain_rot vrot)
