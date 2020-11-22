@@ -1903,11 +1903,17 @@
    "Stop Stabilizer Mode."
    (send self :autobalancerservice_stopstabilizer)
    )
-  (:start-box-balancer
-   (&optional (vpos 0.15) (vrot 0.02))
+  (:set-box-balancer
+   (&optional (tid 7) (bid 8))
    "Start Box Balancer Mode."
-   (send self :autobalancerservice_startBoxBalancer :gain_pos vpos :gain_rot vrot)
+   (send self :autobalancerservice_setBoxBalancer :t_id tid :b_id bid)
    )
+  (:start-box-balancer
+    (&optional (set? t) (tid 7) (bid 8) (vpos 2.5) (vrot 0.003))
+    "Start Box Balancer Mode."
+    (if set? (send self :autobalancerservice_setBoxBalancer :t_id tid :b_id bid))
+    (send self :autobalancerservice_startBoxBalancer :gain_pos vpos :gain_rot vrot)
+    )
   (:stop-box-balancer
    ()
    "Stop Box Balancer Mode."
