@@ -1724,21 +1724,24 @@
            :default-double-support-ratio new-default-double-support-ratio)
      )
    )
+  ;; (:start-graspless-manip-mode
+  ;;  (robot arm)
+  ;;  "Start graspless manip mode while walking.
+  ;;   robot is robot instance which angle-vector is for graspless manip.
+  ;;   arm is used arm (:rarm, :larm, :arms)."
+  ;;  (let ((crds (if (eq arm :arms)
+  ;;                  (send self :calc-hand-trans-coords-dual-arms robot)
+  ;;                (send self :calc-hand-trans-coords-single-arm robot arm)
+  ;;                )))
+  ;;    (send self :set-auto-balancer-param
+  ;;          :graspless-manip-arm arm
+  ;;          :graspless-manip-mode t :is-hand-fix-mode t
+  ;;          :graspless-manip-reference-trans-rot (send crds :worldrot)
+  ;;          :graspless-manip-reference-trans-pos (send crds :worldpos)
+  ;;          )))
   (:start-graspless-manip-mode
-   (robot arm)
-   "Start graspless manip mode while walking.
-    robot is robot instance which angle-vector is for graspless manip.
-    arm is used arm (:rarm, :larm, :arms)."
-   (let ((crds (if (eq arm :arms)
-                   (send self :calc-hand-trans-coords-dual-arms robot)
-                 (send self :calc-hand-trans-coords-single-arm robot arm)
-                 )))
-     (send self :set-auto-balancer-param
-           :graspless-manip-arm arm
-           :graspless-manip-mode t :is-hand-fix-mode t
-           :graspless-manip-reference-trans-rot (send crds :worldrot)
-           :graspless-manip-reference-trans-pos (send crds :worldpos)
-           )))
+   (&optional (gain #f(0 0 0)))
+   (send self :set-auto-balancer-param :graspless-manip-mode t :glaspless-manip-p-gain gain))
   (:stop-graspless-manip-mode
    ()
    "Stop graspless manip mode while walking."
@@ -1909,10 +1912,10 @@
    (send self :autobalancerservice_setBoxBalancer :t_id tid :b_id bid)
    )
   (:start-box-balancer
-    (&optional (set? t) (tid 7) (bid 8) (vpos 2.5) (vrot 0.0025))
+    (&optional (set? t) (tid 7) (bid 8) (vpos 2.5) (vrotp 0.0025) (vrotd 0.0))
     "Start Box Balancer Mode."
     (if set? (send self :autobalancerservice_setBoxBalancer :t_id tid :b_id bid))
-    (send self :autobalancerservice_startBoxBalancer :gain_pos vpos :gain_rot vrot)
+    (send self :autobalancerservice_startBoxBalancer :gain_pos vpos :gain_rot_p vrotp :gain_rot_d vrotd)
     )
   (:stop-box-balancer
    ()
