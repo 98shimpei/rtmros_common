@@ -1740,8 +1740,8 @@
   ;;          :graspless-manip-reference-trans-pos (send crds :worldpos)
   ;;          )))
   (:start-graspless-manip-mode
-   (&optional (gain #f(0 0 0)))
-   (send self :set-auto-balancer-param :graspless-manip-mode t :glaspless-manip-p-gain gain))
+   (&optional (gain #f(0.7 0.5 2.0)))
+   (send self :set-auto-balancer-param :graspless-manip-mode t :graspless-manip-p-gain gain))
   (:stop-graspless-manip-mode
    ()
    "Stop graspless manip mode while walking."
