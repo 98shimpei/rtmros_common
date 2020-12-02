@@ -1933,7 +1933,7 @@
    (send self :autobalancerservice_setBoxWeightOffset)
    )
   (:start-look-at-box
-   (&optional (value 0.005))
+   (&optional (value 0.01))
    "start look at box mode"
    (send self :autobalancerservice_startLookAtBox :gain value)
    )
@@ -1941,6 +1941,11 @@
    ()
    "stop look at box mode"
    (send self :autobalancerservice_stopLookAtBox)
+   )
+  (:jamp-box
+   (&optional (p 1) (a 0.01))
+   "jamp box"
+   (send self :autobalancerservice_jampBox :period p :amp a)
    )
   )
 
