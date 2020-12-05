@@ -1912,10 +1912,10 @@
    (send self :autobalancerservice_setBoxBalancer :t_id tid :b_id bid)
    )
   (:start-box-balancer
-    (&optional (set? t) (tid 7) (bid 8) (vpos 2.5) (vrotp 0.0025) (vrotd 0.0))
+    (&optional (set? t) (coop? nil) (tid 7) (bid 8) (vpos 2.5) (vrotp 0.005) (vrotd 0.0))
     "Start Box Balancer Mode."
     (if set? (send self :autobalancerservice_setBoxBalancer :t_id tid :b_id bid))
-    (send self :autobalancerservice_startBoxBalancer :gain_pos vpos :gain_rot_p vrotp :gain_rot_d vrotd)
+    (send self :autobalancerservice_startBoxBalancer :coop-mode coop :gain_pos vpos :gain_rot_p vrotp :gain_rot_d vrotd)
     )
   (:stop-box-balancer
    ()
@@ -1933,7 +1933,7 @@
    (send self :autobalancerservice_setBoxWeightOffset)
    )
   (:start-look-at-box
-   (&optional (value 0.01))
+   (&optional (value 0.011))
    "start look at box mode"
    (send self :autobalancerservice_startLookAtBox :gain value)
    )
@@ -1943,7 +1943,7 @@
    (send self :autobalancerservice_stopLookAtBox)
    )
   (:jamp-box
-   (&optional (p 1) (a 0.01))
+   (&optional (p 0.3) (a 0.02))
    "jamp box"
    (send self :autobalancerservice_jampBox :period p :amp a)
    )
