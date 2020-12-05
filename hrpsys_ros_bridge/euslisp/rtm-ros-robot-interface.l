@@ -1912,10 +1912,10 @@
    (send self :autobalancerservice_setBoxBalancer :t_id tid :b_id bid)
    )
   (:start-box-balancer
-    (&optional (set? t) (coop? nil) (tid 7) (bid 8) (vpos 2.5) (vrotp 0.005) (vrotd 0.0))
+    (&optional (set? t) (coop? nil) (tid 7) (bid 8) (vpos 2.5) (vrotp 0.005) (vrotd 0.0) (cut 0.4))
     "Start Box Balancer Mode."
     (if set? (send self :autobalancerservice_setBoxBalancer :t_id tid :b_id bid))
-    (send self :autobalancerservice_startBoxBalancer :coop-mode coop :gain_pos vpos :gain_rot_p vrotp :gain_rot_d vrotd)
+    (send self :autobalancerservice_startBoxBalancer :coop_mode coop? :gain_pos vpos :gain_rot_p vrotp :gain_rot_d vrotd :cut_off cut)
     )
   (:stop-box-balancer
    ()
