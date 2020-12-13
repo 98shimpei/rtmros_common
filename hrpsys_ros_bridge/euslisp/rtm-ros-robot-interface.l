@@ -1918,9 +1918,9 @@
     (send self :autobalancerservice_startBoxBalancer :coop_mode coop? :gain_pos vpos :gain_rot_p vrotp :gain_rot_d vrotd :cut_off cut)
     )
   (:stop-box-balancer
-   ()
+   (&optional (value 0.997))
    "Stop Box Balancer Mode."
-   (send self :autobalancerservice_stopBoxBalancer)
+   (send self :autobalancerservice_stopBoxBalancer :gain value)
    )
   (:get-box-weight
    ()
@@ -1943,9 +1943,9 @@
    (send self :autobalancerservice_stopLookAtBox)
    )
   (:jamp-box
-   (&optional (p 0.3) (a 0.02))
+   (&optional (p 0.3) (a 0.02) (ar 0.5))
    "jamp box"
-   (send self :autobalancerservice_jampBox :period p :amp a)
+   (send self :autobalancerservice_jampBox :period p :amp a :ampr ar)
    )
   )
 
