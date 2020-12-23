@@ -1943,9 +1943,9 @@
    (send self :autobalancerservice_stopLookAtBox)
    )
   (:jamp-box
-   (&optional (p 0.3) (a 0.02) (ar 0.5))
+   (&optional (p 0.3) (a 0.02) (ar 0.5) (dx 0) (dy 0) (dz 0))
    "jamp box"
-   (send self :autobalancerservice_jampBox :period p :amp a :ampr ar)
+   (send self :autobalancerservice_jampBox :period p :amp a :ampr ar :x dx :y dy :z dz)
    )
   )
 
