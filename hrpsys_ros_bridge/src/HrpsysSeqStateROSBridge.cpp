@@ -325,6 +325,7 @@ void HrpsysSeqStateROSBridge::onBoxPoseCB(const hrpsys_ros_bridge::BoxPoses::Con
     m_rsboxPose.data.poses[i].id = msg->poses[i].id;
   }
   m_rsboxPose.data.existence = msg->existence;
+  m_rsboxPose.data.delay = msg->delay;
   m_rsboxPoseOut.write();
 }
 
