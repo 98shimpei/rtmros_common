@@ -325,14 +325,21 @@ void HrpsysSeqStateROSBridge::onBoxPoseCB(const hrpsys_ros_bridge::BoxPoses::Con
     m_rsboxPose.data.poses[i].id = msg->poses[i].id;
   }
   m_rsboxPose.data.existence = msg->existence;
-  m_rsboxPose.data.delay = msg->delay;
+  ros::Duration true_diff_time = (ros::Time::now() - msg->header.stamp);
+  int true_diff_ms = true_diff_time.sec * 1000 + true_diff_time.nsec / 1000000;
+  m_rsboxPose.data.delay = true_diff_ms;
   m_rsboxPoseOut.write();
+  
+  //std::cerr << "diff: " << msg->delay << " true: " << true_diff_ms << std::endl;
 }
 
 void HrpsysSeqStateROSBridge::onLookAtPointCB(const geometry_msgs::PointStamped::ConstPtr& msg) {
   m_rslookAtPoint.data.x = msg->point.x;
   m_rslookAtPoint.data.y = msg->point.y;
   m_rslookAtPoint.data.z = msg->point.z;
+  ros::Duration true_diff_time = (ros::Time::now() - msg->header.stamp);
+  int true_diff_ms = true_diff_time.sec * 1000 + true_diff_time.nsec / 1000000;
+  m_rslookAtPoint.data.delay = true_diff_ms;
   m_rslookAtPointOut.write();
 }
 
